@@ -1,1 +1,9 @@
 C:\AI\AI.Debugger\obj\Debug\AI.Debugger.csprojResolveAssemblyReference.cache
+C:\Data\Development\Visual Studio Projects\AI\AI.Debugger\obj\Debug\AI.Debugger.csprojResolveAssemblyReference.cache
+C:\Data\Development\Visual Studio Projects\AI\AI.Debugger\bin\Debug\AI.Debugger.exe
+C:\Data\Development\Visual Studio Projects\AI\AI.Debugger\bin\Debug\AI.Debugger.pdb
+C:\Data\Development\Visual Studio Projects\AI\AI.Debugger\obj\Debug\AI.Debugger.exe
+C:\Data\Development\Visual Studio Projects\AI\AI.Debugger\obj\Debug\AI.Debugger.pdb
+C:\Data\Development\Visual Studio Projects\AI\AI.Debugger\bin\Debug\AI.Debugger.exe.config
+C:\Data\Development\Visual Studio Projects\AI\AI.Debugger\bin\Debug\AI.Core.dll
+C:\Data\Development\Visual Studio Projects\AI\AI.Debugger\bin\Debug\AI.Core.pdb
