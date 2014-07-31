@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using AI.Core;
 
 namespace AI.Debugger
 {
@@ -9,7 +10,8 @@ namespace AI.Debugger
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Hello World!");
+            AI.Core.LinearAlgebra.MatrixTester.Test();
+            Console.WriteLine("Test complete.");
 		}
 	}
 }

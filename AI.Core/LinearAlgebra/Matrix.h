@@ -2,6 +2,7 @@
 #pragma once
 
 #include "../Stdafx.h"
+#include <stdarg.h>
 
 using namespace System;
 
@@ -66,7 +67,21 @@ namespace AI {
 					_rows = rows;
 					_cols = cols;
 				}
-				Matrix(Matrix& copy)
+				static Matrix<T>* Build(int rows, int cols, ...)
+				{
+					Matrix<T>* ret = new Matrix<T>(rows, cols);
+					va_list vl;
+					ret->_rows = rows;
+					ret->_cols = cols;
+					int c = rows * cols;
+					ret->_data = new T[c];
+					va_start(vl, c);
+					for(int i = 0; i < c; ++i)
+						ret->_data[i] = va_arg(vl, T);
+					va_end(vl);
+					return ret;
+				}
+				Matrix(Matrix<T>& copy)
 				{
 					_rows = copy._rows;
 					_cols = copy._cols;
@@ -80,7 +95,7 @@ namespace AI {
 					else
 						_data = 0;
 				}
-				Matrix(Matrix* copy)
+				Matrix(Matrix<T>* copy)
 				{
 					_rows = copy->_rows;
 					_cols = copy->_cols;
@@ -94,6 +109,22 @@ namespace AI {
 					else
 						_data = 0;
 				}
+				const Matrix<T>& operator=(Matrix<T>& copy)
+				{
+					if(_data != 0)
+						delete[] _data;
+					_rows = copy._rows;
+					_cols = copy._cols;
+					int c = _rows * _cols;
+					if(c > 0)
+					{
+						_data = new T[c];
+						for(int i = 0; i < c; ++i)
+							_data[i] = copy._data[i];
+					}
+					else
+						_data = 0;
+				}
 				~Matrix()
 				{
 					if(_data != 0)
@@ -101,31 +132,134 @@ namespace AI {
 					_data = 0;
 				}
 
-				static Matrix* Eye(int size)
+				static Matrix<T>* Eye(int size)
 				{
-					Matrix* ret = new Matrix(size, size);
+					Matrix<T>* ret = new Matrix<T>(size, size);
 					for(int r = 0; r < size; ++r)
 						for(int c = 0; c < size; ++c)
 							if(r == c)
 								ret->_data[r * size + c] = 1;
 					return ret;
 				}
-				static Matrix* Zeros(int rows)
+				static Matrix<T>* Zeros(int rows)
 				{
-					return new Matrix(rows);
+					return new Matrix<T>(rows);
 				}
-				static Matrix* Zeros(int rows, int cols)
+				static Matrix<T>* Zeros(int rows, int cols)
 				{
-					return new Matrix(rows, cols);
+					return new Matrix<T>(rows, cols);
 				}
-				static Matrix* Ones(int rows)
+				static Matrix<T>* Ones(int rows)
 				{
-					return new Matrix(rows, 1, (T)1);
+					return new Matrix<T>(rows, 1, (T)1);
 				}
-				static Matrix* Ones(int rows, int cols)
+				static Matrix<T>* Ones(int rows, int cols)
 				{
-					return new Matrix(rows, cols, (T)1);
+					return new Matrix<T>(rows, cols, (T)1);
 				}
+
+				bool operator==(Matrix<T>& operand)
+				{
+					if(_rows != operand._rows || _cols != operand._cols)
+						return false;
+					for(int i = 0; i < _rows; ++i)
+						for(int j = 0; j < _cols; ++j)
+							if(_data[i * _cols + j] != operand._data[i * opernad._cols + j])
+								return false;
+					return true;
+				}
+
+				bool operator!=(Matrix<T>& operand)
+				{
+					if(_rows != operand._rows || _cols != operand._cols)
+						return true;
+					for(int i = 0; i < _rows; ++i)
+						for(int j = 0; j < _cols; ++j)
+							if(_data[i * _cols + j] != operand._data[i * operand._cols + j])
+								return true;
+					return false;
+				}
+
+				Matrix<T>* operator+(T operand)
+				{
+					Matrix<T>* ret = new Matrix<T>(this);
+					for(int i = 0; i < _rows; ++i)
+						for(int j = 0; j < _cols; ++j)
+							ret->_data[i * _cols + j] += operand;
+					return ret;
+				}
+				Matrix<T>& operator+=(T operand)
+				{
+					for(int i = 0; i < _rows; ++i)
+						for(int j = 0; j < _cols; ++j)
+							_data[i * _cols + j] += operand;
+					return *this;
+				}
+
+				Matrix<T>* operator-(T operand)
+				{
+					Matrix<T>* ret = new Matrix<T>(this);
+					for(int i = 0; i < _rows; ++i)
+						for(int j = 0; j < _cols; ++j)
+							ret->_data[i * _cols + j] -= operand;
+					return ret;
+				}
+				Matrix<T>& operator-=(T operand)
+				{
+					for(int i = 0; i < _rows; ++i)
+						for(int j = 0; j < _cols; ++j)
+							_data[i * _cols + j] -= operand;
+					return *this;
+				}
+
+				Matrix<T>* operator*(T operand)
+				{
+					Matrix<T>* ret = new Matrix<T>(this);
+					for(int i = 0; i < _rows; ++i)
+						for(int j = 0; j < _cols; ++j)
+							ret->_data[i * _cols + j] *= operand;
+					return ret;
+				}
+				Matrix<T>& operator*=(T operand)
+				{
+					for(int i = 0; i < _rows; ++i)
+						for(int j = 0; j < _cols; ++j)
+							_data[i * _cols + j] *= operand;
+					return *this;
+				}
+
+				Matrix<T>* operator/(T operand)
+				{
+					Matrix<T>* ret = new Matrix<T>(this);
+					for(int i = 0; i < _rows; ++i)
+						for(int j = 0; j < _cols; ++j)
+							ret->_data[i * _cols + j] /= operand;
+					return ret;
+				}
+				Matrix<T>& operator/=(T operand)
+				{
+					for(int i = 0; i < _rows; ++i)
+						for(int j = 0; j < _cols; ++j)
+							_data[i * _cols + j] /= operand;
+					return *this;
+				}
+
+				Matrix<T>* operator^(T operand)
+				{
+					Matrix<T>* ret = new Matrix<T>(this);
+					for(int i = 0; i < _rows; ++i)
+						for(int j = 0; j < _cols; ++j)
+							ret->_data[i * _cols + j] = (T)pow((double)_data[i * _cols + j], (double)operand);
+					return ret;
+				}
+				Matrix<T>& operator^=(T operand)
+				{
+					for(int i = 0; i < _rows; ++i)
+						for(int j = 0; j < _cols; ++j)
+							_data[i * _cols + j] = (T)pow((double)_data[i * _cols + j], (double)operand);
+					return *this;
+				}
+
 
 			private:
 				static T Determinant(T* a, int size) {
@@ -157,7 +291,7 @@ namespace AI {
 						}
 						delete[] b;
 					}
-					return (det);
+					return det;
 				}
 
 			public:
@@ -170,31 +304,18 @@ namespace AI {
 					return Determinant(_data, _rows);
 				}
 
-				
-				Matrix* trans(T* num, T* fac, int r)
+				Matrix<T>* Transposition()
 				{
-					int c = r * r;
-					int i, j;
-					T* b = new T[c];
-					T* inv = new T[c];
-					for (i = 0; i < r; i++) {
-						for (j = 0; j < r; j++) {
-							b[i * r + j] = fac[j * r + i];
+					T* ret = new T[_rows * _cols];
+					for (int i = 0; i < _rows; ++i) {
+						for (int j = 0; j < _cols; ++j) {
+							ret[j * _rows + i] = _data[i * _cols + j];
 						}
 					}
-
-					T d = Determinant(num, r);
-					inv[i * r + j] = 0;
-					for (i = 0; i < r; i++) {
-						for (j = 0; j < r; j++) {
-							inv[i * r + j] = b[i * r + j] / d;
-						}
-					}
-
-					return new Matrix(inv, r, r);
+					return new Matrix<T>(ret, _cols, _rows);
 				}
 
-				Matrix* Cofactors() {
+				Matrix<T>* Cofactor() {
 					int c = _rows * _cols;
 					T* b = new T[c];
 					T* fac = new T[c];
@@ -204,9 +325,9 @@ namespace AI {
 							int n = 0;
 							for (int i = 0; i < _rows; i++) {
 								for (int j = 0; j < _rows; j++) {
-									b[i * _rows + j] = 0;
+									b[i * _cols + j] = 0;
 									if (i != q && j != p) {
-										b[m * _rows + n] = _data[i * _rows + j];
+										b[m * _rows + n] = _data[i * _cols + j];
 										if (n < (_rows - 2))
 											n++;
 										else {
@@ -220,33 +341,68 @@ namespace AI {
 						}
 					}
 					delete b;
-					return new Matrix(fac, _rows, _cols);
+					return new Matrix<T>(fac, _rows, _cols);
 				}
 
-				Matrix* Inverse()
+				Matrix<T>* Inverse()
 				{
 					T d = Determinant();
 					if (d == 0)
 						throw gcnew System::Exception("A matrix with a zero determinant cannot be inverted.");
-					Matrix* cofac = Cofactors();
-					Matrix* ret = trans(_data, cofac->_data, _rows);
+					Matrix<T>* cofac = Cofactor();
+					Matrix<T>* ret = cofac->Transposition();
+					*ret /= d;
 					delete cofac;
 					return ret;
 				}
 
-				Matrix* operator+(double operand)
+				Matrix<T>* operator*(Matrix<T>& operand)
 				{
-					Matrix* ret = new Matrix(this);
+					if(_cols != operand._rows)
+						throw gcnew Exception("Mismatched matrix sizes for operator *: " + _rows.ToString() + "x" + _cols.ToString() + " * " + operand._rows.ToString() + "x" + operand._cols.ToString() + ". Columns from first operand must match rows from second operand.");
+					T* ret = new T[_rows * operand._cols];
 					for(int i = 0; i < _rows; ++i)
-						for(int j = 0; j < _cols; ++j)
-							ret->_data[i * _rows + j] += operand;
-					return ret;
+					{
+						for(int j = 0; j < operand._cols; ++j)
+						{
+							int idx = i * operand._cols + j;
+							ret[idx] = 0;
+							for(int k = 0; k < _cols; ++k)
+								ret[idx] += (_data[i * _cols + k] * operand._data[k * operand._cols + j]);
+						}
+					}
+					return new Matrix<T>(ret, _rows, operand._cols);
 				}
+
+				System::String^ ToString()
+				{
+					System::Text::StringBuilder^ ret = gcnew System::Text::StringBuilder();
+					for(int i = 0; i < _rows; ++i)
+					{
+						ret.Append("[");
+						for(int j = 0; j < _cols; ++j)
+						{
+							if(j > 0) ret.Append(" ");
+							ret.Append( Convert::ToString(_data[i * _rows + j]) );
+						}
+						ret.Append("]");
+					}
+					return ret.ToString();
+				}
+
 			private:
 				int _rows;
 				int _cols;
 				T* _data;
 			};
+
+#ifdef DEBUG
+			public ref class MatrixTester
+			{
+			public:
+				static void Test();
+			};
+#endif
 
 		}
 	}
