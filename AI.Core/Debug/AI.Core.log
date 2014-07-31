@@ -1,49 +1,57 @@
-﻿Build started 7/30/2014 8:43:48 PM.
-     1>Project "C:\Data\Development\Visual Studio Projects\AI\AI.Core\AI.Core.vcxproj" on node 2 (Build target(s)).
+﻿Build started 7/31/2014 1:21:16 PM.
+     1>Project "C:\AI\AI.Core\AI.Core.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files (x86)\Windows Kits\8.0\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D DEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib LinearAlgebra\Matrix.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files (x86)\Windows Kits\8.0\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D DEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\AI.Core.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib Stdafx.cpp
+         Stdafx.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files (x86)\Windows Kits\8.0\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D DEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib AssemblyInfo.cpp LinearAlgebra\Matrix.cpp
+         AssemblyInfo.cpp
          Matrix.cpp
-     1>c:\data\development\visual studio projects\ai\ai.core\linearalgebra\matrix.h(71): warning C4793: 'AI::Core::LinearAlgebra::Matrix<double>::Build' : function compiled as native :
+         Generating Code...
+     1>c:\ai\ai.core\linearalgebra\matrix.h(71): warning C4793: 'AI::Core::LinearAlgebra::Matrix<double>::Build' : function compiled as native :
          	varargs not supported under /clr
-     1>c:\data\development\visual studio projects\ai\ai.core\linearalgebra\matrix.h(78): warning C4793: 'AI::Core::LinearAlgebra::Matrix<double>::Build' : function compiled as native :
+     1>c:\ai\ai.core\linearalgebra\matrix.h(78): warning C4793: 'AI::Core::LinearAlgebra::Matrix<double>::Build' : function compiled as native :
          	Found an intrinsic not supported in managed code
-     1>c:\data\development\visual studio projects\ai\ai.core\linearalgebra\matrix.h(80): warning C4793: 'AI::Core::LinearAlgebra::Matrix<double>::Build' : function compiled as native :
+     1>c:\ai\ai.core\linearalgebra\matrix.h(80): warning C4793: 'AI::Core::LinearAlgebra::Matrix<double>::Build' : function compiled as native :
          	Found an intrinsic not supported in managed code
-     1>c:\data\development\visual studio projects\ai\ai.core\linearalgebra\matrix.h(81): warning C4793: 'AI::Core::LinearAlgebra::Matrix<double>::Build' : function compiled as native :
+     1>c:\ai\ai.core\linearalgebra\matrix.h(81): warning C4793: 'AI::Core::LinearAlgebra::Matrix<double>::Build' : function compiled as native :
          	Found an intrinsic not supported in managed code
-     1>c:\data\development\visual studio projects\ai\ai.core\linearalgebra\matrix.h(71): warning C4793: 'AI::Core::LinearAlgebra::Matrix<int>::Build' : function compiled as native :
+     1>c:\ai\ai.core\linearalgebra\matrix.h(71): warning C4793: 'AI::Core::LinearAlgebra::Matrix<int>::Build' : function compiled as native :
          	varargs not supported under /clr
-     1>c:\data\development\visual studio projects\ai\ai.core\linearalgebra\matrix.h(78): warning C4793: 'AI::Core::LinearAlgebra::Matrix<int>::Build' : function compiled as native :
+     1>c:\ai\ai.core\linearalgebra\matrix.h(78): warning C4793: 'AI::Core::LinearAlgebra::Matrix<int>::Build' : function compiled as native :
          	Found an intrinsic not supported in managed code
-     1>c:\data\development\visual studio projects\ai\ai.core\linearalgebra\matrix.h(80): warning C4793: 'AI::Core::LinearAlgebra::Matrix<int>::Build' : function compiled as native :
+     1>c:\ai\ai.core\linearalgebra\matrix.h(80): warning C4793: 'AI::Core::LinearAlgebra::Matrix<int>::Build' : function compiled as native :
          	Found an intrinsic not supported in managed code
-     1>c:\data\development\visual studio projects\ai\ai.core\linearalgebra\matrix.h(81): warning C4793: 'AI::Core::LinearAlgebra::Matrix<int>::Build' : function compiled as native :
+     1>c:\ai\ai.core\linearalgebra\matrix.h(81): warning C4793: 'AI::Core::LinearAlgebra::Matrix<int>::Build' : function compiled as native :
          	Found an intrinsic not supported in managed code
-     1>c:\data\development\visual studio projects\ai\ai.core\linearalgebra\matrix.h(71): warning C4793: 'AI::Core::LinearAlgebra::Matrix<float>::Build' : function compiled as native :
+     1>c:\ai\ai.core\linearalgebra\matrix.h(71): warning C4793: 'AI::Core::LinearAlgebra::Matrix<float>::Build' : function compiled as native :
          	varargs not supported under /clr
-     1>c:\data\development\visual studio projects\ai\ai.core\linearalgebra\matrix.h(78): warning C4793: 'AI::Core::LinearAlgebra::Matrix<float>::Build' : function compiled as native :
+     1>c:\ai\ai.core\linearalgebra\matrix.h(78): warning C4793: 'AI::Core::LinearAlgebra::Matrix<float>::Build' : function compiled as native :
          	Found an intrinsic not supported in managed code
-     1>c:\data\development\visual studio projects\ai\ai.core\linearalgebra\matrix.h(80): warning C4793: 'AI::Core::LinearAlgebra::Matrix<float>::Build' : function compiled as native :
+     1>c:\ai\ai.core\linearalgebra\matrix.h(80): warning C4793: 'AI::Core::LinearAlgebra::Matrix<float>::Build' : function compiled as native :
          	Found an intrinsic not supported in managed code
-     1>c:\data\development\visual studio projects\ai\ai.core\linearalgebra\matrix.h(81): warning C4793: 'AI::Core::LinearAlgebra::Matrix<float>::Build' : function compiled as native :
+     1>c:\ai\ai.core\linearalgebra\matrix.h(81): warning C4793: 'AI::Core::LinearAlgebra::Matrix<float>::Build' : function compiled as native :
          	Found an intrinsic not supported in managed code
-     1>c:\data\development\visual studio projects\ai\ai.core\linearalgebra\matrix.h(71): warning C4793: 'AI::Core::LinearAlgebra::Matrix<short>::Build' : function compiled as native :
+     1>c:\ai\ai.core\linearalgebra\matrix.h(71): warning C4793: 'AI::Core::LinearAlgebra::Matrix<short>::Build' : function compiled as native :
          	varargs not supported under /clr
-     1>c:\data\development\visual studio projects\ai\ai.core\linearalgebra\matrix.h(78): warning C4793: 'AI::Core::LinearAlgebra::Matrix<short>::Build' : function compiled as native :
+     1>c:\ai\ai.core\linearalgebra\matrix.h(78): warning C4793: 'AI::Core::LinearAlgebra::Matrix<short>::Build' : function compiled as native :
          	Found an intrinsic not supported in managed code
-     1>c:\data\development\visual studio projects\ai\ai.core\linearalgebra\matrix.h(80): warning C4793: 'AI::Core::LinearAlgebra::Matrix<short>::Build' : function compiled as native :
+     1>c:\ai\ai.core\linearalgebra\matrix.h(80): warning C4793: 'AI::Core::LinearAlgebra::Matrix<short>::Build' : function compiled as native :
          	Found an intrinsic not supported in managed code
-     1>c:\data\development\visual studio projects\ai\ai.core\linearalgebra\matrix.h(81): warning C4793: 'AI::Core::LinearAlgebra::Matrix<short>::Build' : function compiled as native :
+     1>c:\ai\ai.core\linearalgebra\matrix.h(81): warning C4793: 'AI::Core::LinearAlgebra::Matrix<short>::Build' : function compiled as native :
          	Found an intrinsic not supported in managed code
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D DEBUG /D _WINDLL /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /TP /analyze- /errorReport:prompt "C:\Users\johnf\AppData\Local\Temp\.NETFramework,Version=v4.5.AssemblyAttributes.cpp"
+         .NETFramework,Version=v4.5.AssemblyAttributes.cpp
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.0\bin\x86\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Debug\app.res" app.rc 
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Data\Development\Visual Studio Projects\AI\AI.Core\Debug\AI.Core.dll" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Data\Development\Visual Studio Projects\AI\AI.Core\Debug\AI.Core.pdb" /ASSEMBLYDEBUG /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 /DLL Debug\app.res
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\AI\AI.Core\Debug\AI.Core.dll" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\AI\AI.Core\Debug\AI.Core.pdb" /ASSEMBLYDEBUG /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 /DLL Debug\app.res
          Debug\AssemblyInfo.obj
          Debug\Matrix.obj
          Debug\Stdafx.obj
          "Debug\.NETFramework,Version=v4.5.AssemblyAttributes.obj"
-         AI.Core.vcxproj -> C:\Data\Development\Visual Studio Projects\AI\AI.Core\Debug\AI.Core.dll
-     1>Done Building Project "C:\Data\Development\Visual Studio Projects\AI\AI.Core\AI.Core.vcxproj" (Build target(s)).
+         AI.Core.vcxproj -> C:\AI\AI.Core\Debug\AI.Core.dll
+     1>Done Building Project "C:\AI\AI.Core\AI.Core.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:10.46
+Time Elapsed 00:00:04.83
