@@ -189,8 +189,35 @@ namespace AI {
 						return false;
 					for(int i = 0; i < _rows; ++i)
 						for(int j = 0; j < _cols; ++j)
-							if(_data[i * _cols + j] != operand._data[i * opernad._cols + j])
+							if (_data[i * _cols + j] != operand._data[i * operand._cols + j])
 								return false;
+					return true;
+				}
+
+				bool Equals(Matrix<T>& operand)
+				{
+					if (_rows != operand._rows || _cols != operand._cols)
+						return false;
+					for (int i = 0; i < _rows; ++i)
+						for (int j = 0; j < _cols; ++j)
+							if (_data[i * _cols + j] != operand._data[i * operand._cols + j])
+								return false;
+					return true;
+				}
+
+				bool ApproxEquals(Matrix<T>& operand)
+				{
+					if (_rows != operand._rows || _cols != operand._cols)
+						return false;
+					for (int i = 0; i < _rows; ++i)
+					{
+						for (int j = 0; j < _cols; ++j)
+						{
+							T diff = _data[i * _cols + j] - operand._data[i * operand._cols + j];
+							if (diff > 0.00001 || diff < -0.00001)
+								return false;
+						}
+					}
 					return true;
 				}
 
