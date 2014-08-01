@@ -11,8 +11,31 @@ namespace AI {
 		namespace LinearAlgebra {
 
 			template<class T>
+			class Matrix;
+
+			template<class T>
+			class MatrixRow
+			{
+			public:
+				MatrixRow<T>(Matrix<T>* m, int row_index)
+				{
+					_matrix = m;
+					_row_index = row_index;
+				}
+
+				T operator[](int col_index)
+				{
+					return _matrix->_data[_row_index * _matrix->_cols + col_index];
+				}
+			private:
+				Matrix<T>* _matrix;
+				int _row_index;
+			};
+
+			template<class T>
 			class Matrix
 			{
+				friend class MatrixRow<T>;
 			public:
 				Matrix()
 				{
@@ -70,12 +93,9 @@ namespace AI {
 				static Matrix<T>* Build(int rows, int cols, ...)
 				{
 					Matrix<T>* ret = new Matrix<T>(rows, cols);
-					va_list vl;
-					ret->_rows = rows;
-					ret->_cols = cols;
 					int c = rows * cols;
-					ret->_data = new T[c];
-					va_start(vl, c);
+					va_list vl;
+					va_start(vl, cols);
 					for(int i = 0; i < c; ++i)
 						ret->_data[i] = va_arg(vl, T);
 					va_end(vl);
@@ -130,6 +150,11 @@ namespace AI {
 					if(_data != 0)
 						delete[] _data;
 					_data = 0;
+				}
+
+				MatrixRow<T> operator[](int row_index)
+				{
+					return MatrixRow<T>(this, row_index);
 				}
 
 				static Matrix<T>* Eye(int size)
@@ -262,32 +287,33 @@ namespace AI {
 
 
 			private:
-				static T Determinant(T* a, int size) {
-					T s = 1;
+				static T Determinant(T* a, int a_size, int size) {
 					T det = 0;
 					if (size == 1) {
 						return a[0];
+					}
+					else if (size == 2)
+					{
+						det = (a[0] * a[a_size + 1]) - (a[1] * a[a_size]);
 					} else {
 						T* b = new T[size * size];
 						for (int c = 0; c < size; c++) {
 							int m = 0;
 							int n = 0;
-							for (int i = 0; i < size; i++) {
+							for (int i = 1; i < size; i++) {
 								for (int j = 0; j < size; j++) {
-									b[i * size + j] = 0;
-									if (i != 0 && j != c) {
-										b[m * size + n] = a[i * size + j];
-										if (n < (size - 2))
-											n++;
-										else {
-											n = 0;
+									if (j != c) {
+										b[m * size + n] = a[i * a_size + j];
+										n++;
+										if (n == size - 1)
+										{
 											m++;
+											n = 0;
 										}
 									}
 								}
 							}
-							det = det + s * (a[c] * Determinant(b, size - 1));
-							s = -1 * s;
+							det += a[c] * (T)pow((double)-1, (int)c) * Determinant(b, size, size - 1);
 						}
 						delete[] b;
 					}
@@ -301,7 +327,7 @@ namespace AI {
 						throw gcnew System::Exception("Cannot calculate determinant on non-square matrix.");
 					if(_rows == 0)
 						throw gcnew System::Exception("Cannot calculate determinant on empty matrix.");
-					return Determinant(_data, _rows);
+					return Determinant(_data, _rows, _rows);
 				}
 
 				Matrix<T>* Transposition()
@@ -337,7 +363,7 @@ namespace AI {
 									}
 								}
 							}
-							fac[q * _rows + p] = (T)pow((double)-1, q + p) * Determinant(b, _rows - 1);
+							fac[q * _rows + p] = (T)pow((double)-1, q + p) * Determinant(b, _rows, _rows - 1);
 						}
 					}
 					delete b;
