@@ -79,6 +79,7 @@
     <ClInclude Include="AI.Core.h" />
     <ClInclude Include="IO\IInput.h" />
     <ClInclude Include="LinearAlgebra\Matrix.h" />
+    <ClInclude Include="Models\Functions.h" />
     <ClInclude Include="Models\LinearRegression.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stdafx.h" />

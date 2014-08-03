@@ -51,6 +51,9 @@
     <ClInclude Include="IO\IInput.h">
       <Filter>Header Files\IO</Filter>
     </ClInclude>
+    <ClInclude Include="Models\Functions.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">

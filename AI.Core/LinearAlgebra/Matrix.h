@@ -430,6 +430,16 @@ namespace AI {
 					return new Matrix<T>(ret, _rows, operand._cols);
 				}
 
+				int RowCount()
+				{
+					return _rows;
+				}
+
+				int ColumnCount()
+				{
+					return _cols;
+				}
+
 				System::String^ ToString()
 				{
 					System::Text::StringBuilder^ ret = gcnew System::Text::StringBuilder();

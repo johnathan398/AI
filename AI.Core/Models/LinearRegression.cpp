@@ -11,8 +11,33 @@ namespace AI
 				_theta = 0;
 			}
 
+			CostFunctionReturnValue<double> LinearRegression::CostFunction(Matrix<double>* x, Matrix<double>* y, Matrix<double>* theta)
+			{
+				CostFunctionReturnValue<double> ret;
+				ret.Cost = 0;
+				int n_plus_1 = theta->ColumnCount();
+				ret.ParameterGradients = new double[n_plus_1];
+
+				// TODO
+				// h_of_theta = theta' * X';
+				// J = sum((h_of_theta' - y) .^ 2) / (2 * m);
+				// J_grad = ((h_of_theta' - y)' * X)' / m
+
+				return ret;
+			}
+
 			void LinearRegression::TrainGradient(AI::Core::IO::IInputLinearRegression^ input, int max_iterations)
 			{
+				int m = input->TrainingExampleCount;
+				int n = input->FeatureCount;
+				if(_theta != 0) delete _theta; _theta = new Matrix<double>(n + 1);
+
+				for(int i = 0; i < max_iterations; ++i)
+				{
+					// TODO
+					// theta = theta - alpha * CostFunction().ParameterGradients
+				}
+
 				throw gcnew NotImplementedException();
 			}
 
