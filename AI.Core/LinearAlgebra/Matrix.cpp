@@ -12,7 +12,7 @@ namespace AI {
 				delete m;
 
 				//test 2x2 determinant
-				m = Matrix<T>::Build(2, 2, (T)3, (T)8, (T)4, (T)6);
+				m = new Matrix<T>(gcnew array<T, 2>{{3,8},{4,6}});
 				T a1 = (*m)[0][0];
 				T b1 = (*m)[0][1];
 				T a2 = (*m)[1][0];
@@ -22,15 +22,15 @@ namespace AI {
 				if(d1 != -14) throw gcnew Exception("Determinant not correct.");
 
 				//test multiplication
-				m = Matrix<T>::Build(3, 3, (T)1, (T)2, (T)3, (T)3, (T)2, (T)1, (T)2, (T)1, (T)3);
-				Matrix<T>* n = Matrix<T>::Build(3, 3, (T)4, (T)5, (T)6, (T)6, (T)5, (T)4, (T)4, (T)6, (T)5);
-				Matrix<T>* mul_true = Matrix<T>::Build(3, 3, (T)28, (T)33, (T)29, (T)28, (T)31, (T)31, (T)26, (T)33, (T)31);
+				m = new Matrix<T>(gcnew array<T, 2>{{1,2,3},{3,2,1},{2,1,3}});
+				Matrix<T>* n = new Matrix<T>(gcnew array<T, 2>{{4,5,6},{6,5,4},{4,6,5}});
+				Matrix<T>* mul_true = new Matrix<T>(gcnew array<T, 2>{{28,33,29},{28,31,31},{26,33,31}});
 				Matrix<T>* mul_test = *m * *n;
 				if (*mul_true != *mul_test) throw gcnew Exception("Multiplication not working correctly.");
 				delete m; delete n; delete mul_true; delete mul_test;
 
 				//test 3x3 determinant
-				m = Matrix<T>::Build(3, 3, (T)1, (T)2, (T)3, (T)0, (T)4, (T)5, (T)1, (T)0, (T)6);
+				m = new Matrix<T>(gcnew array<T, 2>{{1,2,3},{0,4,5},{1,0,6}});
 				a1 = (*m)[0][0];
 				T c3 = (*m)[2][2];
 				T d2 = m->Determinant();
@@ -68,8 +68,9 @@ namespace AI {
 			{
 				TextMatrix<double>(new Matrix<double>(), true);
 				TextMatrix<int>(new Matrix<int>(), false);
-				//TextMatrix<float>(new Matrix<float>(), true); do not test va_arg promoted types
-				//TextMatrix<short>(new Matrix<short>(), false); do not test va_arg promoted types
+				TextMatrix<float>(new Matrix<float>(), true);
+				TextMatrix<short>(new Matrix<short>(), false);
+				TextMatrix<char>(new Matrix<char>(), false);
 			}
 
 #endif

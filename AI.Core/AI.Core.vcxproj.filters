@@ -19,6 +19,18 @@
     <Filter Include="Source Files\LinearAlgenra">
       <UniqueIdentifier>{96847a14-95d2-4a8e-a589-ebb9e0d520a8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Models">
+      <UniqueIdentifier>{2876b82b-ce9a-4201-9b0a-bc8e8132b8a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models">
+      <UniqueIdentifier>{5c7ac7f9-b19f-446d-a186-f1b280994e05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\IO">
+      <UniqueIdentifier>{ab3011e8-bc6a-4148-96e1-4992561cee8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\IO">
+      <UniqueIdentifier>{0a9c3c98-86cc-4830-baa9-3285fb673a29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AI.Core.h">
@@ -33,6 +45,12 @@
     <ClInclude Include="LinearAlgebra\Matrix.h">
       <Filter>Header Files\LinearAlgebra</Filter>
     </ClInclude>
+    <ClInclude Include="Models\LinearRegression.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="IO\IInput.h">
+      <Filter>Header Files\IO</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -43,6 +61,9 @@
     </ClCompile>
     <ClCompile Include="LinearAlgebra\Matrix.cpp">
       <Filter>Source Files\LinearAlgenra</Filter>
+    </ClCompile>
+    <ClCompile Include="Models\LinearRegression.cpp">
+      <Filter>Source Files\Models</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

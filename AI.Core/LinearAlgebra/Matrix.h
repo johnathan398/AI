@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include "../Stdafx.h"
@@ -23,7 +22,7 @@ namespace AI {
 					_row_index = row_index;
 				}
 
-				T operator[](int col_index)
+				T& operator[](int col_index)
 				{
 					return _matrix->_data[_row_index * _matrix->_cols + col_index];
 				}
@@ -90,17 +89,6 @@ namespace AI {
 					_rows = rows;
 					_cols = cols;
 				}
-				static Matrix<T>* Build(int rows, int cols, ...)
-				{
-					Matrix<T>* ret = new Matrix<T>(rows, cols);
-					int c = rows * cols;
-					va_list vl;
-					va_start(vl, cols);
-					for(int i = 0; i < c; ++i)
-						ret->_data[i] = va_arg(vl, T);
-					va_end(vl);
-					return ret;
-				}
 				Matrix(Matrix<T>& copy)
 				{
 					_rows = copy._rows;
@@ -125,6 +113,21 @@ namespace AI {
 						_data = new T[c];
 						for(int i = 0; i < c; ++i)
 							_data[i] = copy->_data[i];
+					}
+					else
+						_data = 0;
+				}
+				Matrix(array<T, 2>^ copy)
+				{
+					_rows = copy->GetLength(0);
+					_cols = copy->GetLength(1);
+					int c = _rows * _cols;
+					if(c > 0)
+					{
+						_data = new T[c];
+						for(int i = 0; i < _rows; ++i)
+							for(int j = 0; j < _cols; ++j)
+								_data[i * _cols + j] = copy[i, j];
 					}
 					else
 						_data = 0;
