@@ -19,7 +19,7 @@ namespace AI
 			{
 			public:
 				T Cost;
-				T* ParameterGradients;
+				Matrix<T>* ParameterGradients;
 			};
 
 			

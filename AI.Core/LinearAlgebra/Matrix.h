@@ -315,6 +315,77 @@ namespace AI {
 					return *this;
 				}
 
+				T Sum()
+				{
+					T ret = 0;
+					int c = _rows * _cols;
+					for (int i = 0; i < c; ++i)
+						ret += _data[i];
+					return ret;
+				}
+
+				Matrix<T>* operator+(Matrix<T>& operand)
+				{
+					if (_rows != operand._rows || _cols != operand._cols)
+						throw gcnew Exception("Mismatched matrix sizes for operator +: " + _rows.ToString() + "x" + _cols.ToString() + " * " + operand._rows.ToString() + "x" + operand._cols.ToString() + ". Matricies must be same size.");
+					Matrix<T>* ret = new Matrix<T>(_rows, _cols);
+					for (int i = 0; i < _rows; ++i)
+					{
+						for (int j = 0; j < _cols; ++j)
+						{
+							int idx = i * _cols + j;
+							ret->_data[idx] = _data[idx] + operand._data[idx];
+						}
+					}
+					return ret;
+				}
+
+				Matrix<T>* operator-(Matrix<T>& operand)
+				{
+					if (_rows != operand._rows || _cols != operand._cols)
+						throw gcnew Exception("Mismatched matrix sizes for operator -: " + _rows.ToString() + "x" + _cols.ToString() + " * " + operand._rows.ToString() + "x" + operand._cols.ToString() + ". Matricies must be same size.");
+					Matrix<T>* ret = new Matrix<T>(_rows, _cols);
+					for (int i = 0; i < _rows; ++i)
+					{
+						for (int j = 0; j < _cols; ++j)
+						{
+							int idx = i * _cols + j;
+							ret->_data[idx] = _data[idx] - operand._data[idx];
+						}
+					}
+					return ret;
+				}
+
+				Matrix<T>& operator+=(Matrix<T>& operand)
+				{
+					if (_rows != operand._rows || _cols != operand._cols)
+						throw gcnew Exception("Mismatched matrix sizes for operator +: " + _rows.ToString() + "x" + _cols.ToString() + " * " + operand._rows.ToString() + "x" + operand._cols.ToString() + ". Matricies must be same size.");
+					for (int i = 0; i < _rows; ++i)
+					{
+						for (int j = 0; j < _cols; ++j)
+						{
+							int idx = i * _cols + j;
+							_data[idx] += operand._data[idx];
+						}
+					}
+					return *this;
+				}
+
+				Matrix<T>& operator-=(Matrix<T>& operand)
+				{
+					if (_rows != operand._rows || _cols != operand._cols)
+						throw gcnew Exception("Mismatched matrix sizes for operator -: " + _rows.ToString() + "x" + _cols.ToString() + " * " + operand._rows.ToString() + "x" + operand._cols.ToString() + ". Matricies must be same size.");
+					for (int i = 0; i < _rows; ++i)
+					{
+						for (int j = 0; j < _cols; ++j)
+						{
+							int idx = i * _cols + j;
+							_data[idx] -= operand._data[idx];
+						}
+					}
+					return *this;
+				}
+
 
 			private:
 				static T Determinant(T* a, int a_size, int size) {

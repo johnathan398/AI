@@ -20,7 +20,7 @@ namespace AI
 				LinearRegression();
 
 
-				void TrainGradient(AI::Core::IO::IInputLinearRegression^ input, int max_iterations);
+				void TrainGradient(AI::Core::IO::IInputLinearRegression^ input, int max_iterations, double learning_rate);
 				void TrainNormal(AI::Core::IO::IInputLinearRegression^ input);
 				double Predict(array<double>^ feature_vector);
 				array<double>^ Predict(AI::Core::IO::IInput^ input);

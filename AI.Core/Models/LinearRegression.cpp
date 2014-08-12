@@ -16,17 +16,36 @@ namespace AI
 				CostFunctionReturnValue<double> ret;
 				ret.Cost = 0;
 				int n_plus_1 = theta->ColumnCount();
-				ret.ParameterGradients = new double[n_plus_1];
+				int m = x->RowCount();
 
-				// TODO
 				// h_of_theta = theta' * X';
+				Matrix<double>* theta_transpose = theta->Transposition();
+				Matrix<double>* x_transpose = x->Transposition();
+				Matrix<double>* h_of_theta = (*theta_transpose) * (*x_transpose);
+				delete x_transpose; delete theta_transpose;
 				// J = sum((h_of_theta' - y) .^ 2) / (2 * m);
+				Matrix<double>* h_of_theta_transpose = h_of_theta->Transposition();
+				delete h_of_theta;
+				Matrix<double>* diff = (*h_of_theta_transpose) - (*y);
+				delete h_of_theta_transpose;
+				Matrix<double>* diff2 = (*diff) ^ 2;
+				ret.Cost = diff2->Sum() / (2 * m);
+				delete diff2;
+
 				// J_grad = ((h_of_theta' - y)' * X)' / m
+				Matrix<double>* diff_transpose = diff->Transposition();
+				delete diff;
+				Matrix<double>* diff_x = (*diff_transpose) * (*x);
+				delete diff_transpose;
+				Matrix<double>* diff_x_trans = diff_x->Transposition();
+				delete diff_x;
+				(*diff_x_trans) /= m;
+				ret.ParameterGradients = diff_x_trans;
 
 				return ret;
 			}
 
-			void LinearRegression::TrainGradient(AI::Core::IO::IInputLinearRegression^ input, int max_iterations)
+			void LinearRegression::TrainGradient(AI::Core::IO::IInputLinearRegression^ input, int max_iterations, double learning_rate)
 			{
 				int m = input->TrainingExampleCount;
 				int n = input->FeatureCount;
@@ -34,8 +53,12 @@ namespace AI
 
 				for(int i = 0; i < max_iterations; ++i)
 				{
-					// TODO
 					// theta = theta - alpha * CostFunction().ParameterGradients
+					CostFunctionReturnValue<double> cost; // = CostFunction();
+					Matrix<double>* grad = (*cost.ParameterGradients) * learning_rate;
+					delete cost.ParameterGradients;
+					(*_theta) -= *grad;
+					delete grad;
 				}
 
 				throw gcnew NotImplementedException();
